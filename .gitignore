@@ -6,6 +6,7 @@ core
 build/
 devel/
 .catkin_workspace
+.github/
 
 # generated
 libmavconn/include/mavconn/mavlink_dialect.h
