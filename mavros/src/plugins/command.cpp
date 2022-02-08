@@ -72,7 +72,7 @@ public:
 		cmd_nh.param("use_comp_id_system_control", use_comp_id_system_control, false);
 
 		command_ack_timeout_dt = ros::Duration(command_ack_timeout);
-
+		// MARK 接受 cmd/command
 		command_long_srv = cmd_nh.advertiseService("command", &CommandPlugin::command_long_cb, this);
 		command_ack_srv = cmd_nh.advertiseService("command_ack", &CommandPlugin::command_ack_cb, this);
 		command_int_srv = cmd_nh.advertiseService("command_int", &CommandPlugin::command_int_cb, this);
@@ -285,7 +285,7 @@ private:
 		cmd.param5 = param5;
 		cmd.param6 = param6;
 		cmd.param7 = param7;
-
+		// MARK 发送 cmd/command
 		UAS_FCU(m_uas)->send_message_ignore_drop(cmd);
 	}
 

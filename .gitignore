@@ -3,6 +3,9 @@
 *.pyc
 core
 .vscode/
+build/
+devel/
+.catkin_workspace
 
 # generated
 libmavconn/include/mavconn/mavlink_dialect.h

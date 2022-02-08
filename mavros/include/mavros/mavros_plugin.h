@@ -96,7 +96,7 @@ protected:
 	 *
 	 * @param[in] fn  pointer to member function (handler)
 	 */
-	template<class _C, class _T>
+	template<class _C, class _T>  //MARK 注册路由
 	HandlerInfo make_handler(void (_C::*fn)(const mavlink::mavlink_message_t*, _T &)) {
 		auto bfn = std::bind(fn, static_cast<_C*>(this), std::placeholders::_1, std::placeholders::_2);
 		const auto id = _T::MSG_ID;

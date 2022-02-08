@@ -118,6 +118,7 @@ MavRos::MavRos() :
 		ROS_INFO("GCS bridge disabled");
 
 	// ROS mavlink bridge
+	// MARK 总入口，将来自远程端的数据，发送到本地端
 	mavlink_pub = mavlink_nh.advertise<mavros_msgs::Mavlink>("from", 100);
 	mavlink_sub = mavlink_nh.subscribe("to", 100, &MavRos::mavlink_sub_cb, this,
 		ros::TransportHints()
@@ -232,7 +233,7 @@ void MavRos::spin()
 void MavRos::mavlink_pub_cb(const mavlink_message_t *mmsg, Framing framing)
 {
 	auto rmsg = boost::make_shared<mavros_msgs::Mavlink>();
-
+	// MARK 接受来自飞控端的消息
 	if  (mavlink_pub.getNumSubscribers() == 0)
 		return;
 
@@ -253,6 +254,7 @@ void MavRos::mavlink_sub_cb(const mavros_msgs::Mavlink::ConstPtr &rmsg)
 
 void MavRos::plugin_route_cb(const mavlink_message_t *mmsg, const Framing framing)
 {
+	// MARK 对于从远程端过来的数据，检查msgid是否与已注册路由相匹配
 	auto it = plugin_subscriptions.find(mmsg->msgid);
 	if (it == plugin_subscriptions.end())
 		return;
