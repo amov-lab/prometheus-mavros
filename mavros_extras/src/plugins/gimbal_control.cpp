@@ -42,7 +42,7 @@ namespace mavros
 		public:
 			GimbalControlPlugin() : PluginBase(),
 								   nh("~"),
-								   mount_nh("~mount_control")
+								   mount_nh("~gimbal_control")
 			{
 			}
 
