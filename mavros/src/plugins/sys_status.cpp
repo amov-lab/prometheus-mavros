@@ -656,6 +656,7 @@ private:
 		ROS_INFO_NAMED("sys", "%s: Board hardware:      %08x", prefix, apv.board_version);
 		ROS_INFO_NAMED("sys", "%s: VID/PID:             %04x:%04x", prefix, apv.vendor_id, apv.product_id);
 		ROS_INFO_NAMED("sys", "%s: UID:                 %016llx", prefix, (long long int)apv.uid);
+		ROS_INFO_NAMED("sys", "%s: STATE: uav connect success", prefix);
 	}
 
 	void process_autopilot_version_apm_quirk(mavlink::common::msg::AUTOPILOT_VERSION &apv, uint8_t sysid, uint8_t compid)
