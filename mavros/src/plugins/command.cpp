@@ -129,9 +129,35 @@ private:
 				return;
 			}
 		}
-
-		ROS_WARN_THROTTLE_NAMED(10, "cmd", "CMD: Unexpected command %u, result %u",
-			ack.command, ack.result);
+		if(ack.command == 400)
+		{
+			ROS_WARN_THROTTLE_NAMED(10, "cmd", "armed/disarmed success");
+		}
+		if(ack.command == 176)
+		{
+			if(ack.result == 0)
+			{
+				ROS_WARN_THROTTLE_NAMED(10, "cmd", "mode change success");
+			}
+			else{
+				ROS_WARN_THROTTLE_NAMED(10, "cmd", "mode change failed");
+			}
+		}
+		if(ack.command == 22)
+		{
+			ROS_WARN_THROTTLE_NAMED(10, "cmd", "takeoff");
+		}
+		if(ack.command == 21)
+		{
+			ROS_WARN_THROTTLE_NAMED(10, "cmd", "land");
+		}
+		else{
+			ROS_WARN_THROTTLE_NAMED(10, "cmd", "%u", ack.command);
+		}
+		// else{
+		// 	ROS_WARN_THROTTLE_NAMED(10, "cmd", "CMD: Unexpected command %u, result %u",
+		// 	ack.command, ack.result);
+		// }
 	}
 
 	/* -*- mid-level functions -*- */
